@@ -16,7 +16,7 @@
 
 ## Introduction
 
-**pdbM** is a versatile command-line tool designed to simplify the manipulation of Protein Data Bank (PDB) files. Whether you need to renumber atoms and residues, rename chain identifiers, or add element columns, pdbM provides an easy-to-use interface to perform these tasks efficiently. Ideal for bioinformaticians, structural biologists, and researchers working with molecular structures, pdbM streamlines the preprocessing of PDB files for further analysis or visualization.
+**pdbM** is a versatile command-line tool designed to simplify manipulating Protein Data Bank (PDB) files. Whether you need to renumber atoms and residues, rename chain identifiers, or add element columns, pdbM provides an easy-to-use interface to perform these tasks efficiently. Ideal for bioinformaticians, structural biologists, and researchers working with molecular structures, pdbM streamlines the preprocessing of PDB files for further analysis or visualization.
 
 ## Features
 
@@ -70,9 +70,6 @@
    ```bash
    pdbM --help
    ```
-
-   *(Ensure you have added a `--help` option in your script for this to work.)*
-
 ## Usage
 
 Run `pdbM` from the command line to start the PDB file manipulation program.
@@ -226,4 +223,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-*For any further assistance, please contact [your.email@example.com](mailto:your.email@example.com).*
+*For any further assistance, please contact [your.email@example.com](mailto:swdseth@gmail.com).*
