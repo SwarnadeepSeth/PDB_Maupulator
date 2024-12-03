@@ -63,13 +63,6 @@
    - Makes the script executable.
    - Creates a symbolic link in `/usr/local/bin` for easy access.
 
-4. **Verify Installation**
-
-   After installation, you can verify by running:
-
-   ```bash
-   pdbM --help
-   ```
 ## Usage
 
 Run `pdbM` from the command line to start the PDB file manipulation program.
@@ -223,4 +216,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-*For any further assistance, please contact [your.email@example.com](mailto:swdseth@gmail.com).*
+*For any further assistance, please contact [swdseth@gmail.com](mailto:swdseth@gmail.com).*
