@@ -189,8 +189,9 @@ def perform_operations(pdb_file, output_file, operations):
         os.replace(tmp_file, current_file)
 
 # =============================================================================
-pdb_file = 'protein_raw.pdb'  # Replace with the path to your PDB file
-output_file = 'protein.pdb'  # Final output file
+# User input and main program
+pdb_file = input("Enter the input PDB file: ")  # Input PDB file
+output_file = input("Enter the output PDB file: ")  # Output PDB file
 
 print("="*100)
 print("\t\t\t\tPDB FILE MANIPULATION PROGRAM")
