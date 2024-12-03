@@ -140,6 +140,12 @@ def assign_segment_ids(pdb_file, output_file):
                 # For non-ATOM lines, just copy them as-is
                 out_file.write(line)
 
+def remove_anisou(input_file, output_file):
+    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        for line in infile:
+            if not line.startswith("ANISOU"):
+                outfile.write(line)
+
 # =============================================================================
 # Function to perform the selected operations
 def perform_operations(pdb_file, output_file, operations):
@@ -179,27 +185,15 @@ def perform_operations(pdb_file, output_file, operations):
             assign_segment_ids(current_file, tmp_file)
 
         elif op == 8:
-            output_format = input("Enter the desired output format (e.g., 'mol2', 'pdbqt', 'xyz'): ")
-            if output_format == 'pdbqt':
-                os.system(f"obabel {current_file} -O {tmp_file}.pdbqt -xr")
-            else:
-                os.system(f"obabel {current_file} -O {tmp_file}.{output_format}")
+            remove_anisou(current_file, tmp_file)
 
         # Overwrite the current file with the result for the next operation
         os.replace(tmp_file, current_file)
 
 # =============================================================================
 # User input and main program
-pdb_file = input("Enter the input PDB file: ")  # Input PDB file
-output_file = input("Enter the output PDB file: ")  # Output PDB file
-
 print("="*100)
 print("\t\t\t\tPDB FILE MANIPULATION PROGRAM")
-print("="*100)
-
-print("Input PDB file: ", pdb_file)
-print("Output PDB file: ", output_file)
-
 print("="*100)
 print("Select operations to perform (comma-separated):")
 print("> 1. Rename the chain identifier by atom number")
@@ -209,7 +203,8 @@ print("> 4. Renumber atom IDs")
 print("> 5. Renumber residue IDs")
 print("> 6. Add an element column")
 print("> 7. Assign segment IDs")
-print("> 8. Convert PDB to other format")
+print("> 8. Remove ANISOU records")
+print("> 9. Convert PDB to other format (single operation)")
 print("CTRL+C to exit")
 print("="*100)
 
@@ -217,10 +212,31 @@ print("="*100)
 operation_input = input("Enter the operation numbers (comma-separated): ")
 operations = [int(op.strip()) for op in operation_input.split(",")]
 
-perform_operations(pdb_file, output_file, operations)
+if operations[0] == 9:
+    pdb_file = input("Enter the input PDB file: ")  # Input PDB file
+    print("Input PDB file: ", pdb_file)
+    output_format = input("Enter the desired output format (e.g., 'mol2', 'pdbqt', 'xyz'): ")
+    outfilename = pdb_file.split(".")[0]
+    if output_format == 'pdbqt':
+        print("Available charge assigning potentials:")
+        os.system("obabel -L charges")
+        print ("="*100)
+        print("Enter the charge assigning potential (e.g., gasteiger, mmff94, etc.):")
+        charge_assign = input("Enter the charge assigning potential: ")
+        pH_assign = input("Enter the pH value: ")
+        os.system(f"obabel {pdb_file} -O {outfilename}.pdbqt -xr -p {pH_assign} --partialcharge {charge_assign}")
+    else:
+        os.system(f"obabel {pdb_file} -O {outfilename}.{output_format}")
+    print("Conversion completed. Output file saved as:", f"{outfilename}.{output_format}")
+else:
+    pdb_file = input("Enter the input PDB file: ")  # Input PDB file
+    output_file = input("Enter the output PDB file: ")  # Output PDB file
+    print("Input PDB file: ", pdb_file)
+    print("Output PDB file: ", output_file)
+    perform_operations(pdb_file, output_file, operations)
+    print("All operations completed. Final PDB file saved as:", output_file)
 
 # Cleanup if needed
 if os.path.exists("tmp.pdb"):
     os.remove("tmp.pdb")
 
-print("All operations completed. Final PDB file saved as:", output_file)
