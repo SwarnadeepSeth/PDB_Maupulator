@@ -1,6 +1,6 @@
 # pdbM: PDB File Manipulation Tool
 
-![pdbM Logo](https://raw.githubusercontent.com/SwarnadeepSeth/PDB_Maupulator/refs/heads/main/logo.webp)
+![pdbM Logo](https://raw.githubusercontent.com/SwarnadeepSeth/PDB_Maupulator/refs/heads/main/logo.webp =80x80)
 
 ## Table of Contents
 - [Introduction](#introduction)
