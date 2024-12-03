@@ -26,6 +26,8 @@
 - **Renumber Atom IDs**: Sequentially renumber atom serial numbers starting from 1.
 - **Renumber Residue IDs**: Sequentially renumber residue identifiers starting from 1.
 - **Add Element Column**: Automatically populate the element column based on atom names.
+- **Assign Segment ID**
+- **Remove ANISOU Record**
 - **Convert PDB to Other Formats**: Utilize Open Babel to convert PDB files to formats like MOL2, PDBQT, XYZ, and more.
 
 ## Installation
